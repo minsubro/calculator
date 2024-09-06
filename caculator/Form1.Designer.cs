@@ -29,9 +29,9 @@ namespace caculator
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.Reciprocal = new System.Windows.Forms.Button();
+            this.Square = new System.Windows.Forms.Button();
+            this.Root = new System.Windows.Forms.Button();
             this.Divided = new System.Windows.Forms.Button();
             this.Multiply = new System.Windows.Forms.Button();
             this.Number9 = new System.Windows.Forms.Button();
@@ -57,43 +57,46 @@ namespace caculator
             this.calBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // button1
+            // Reciprocal
             // 
-            this.button1.Font = new System.Drawing.Font("굴림", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button1.Location = new System.Drawing.Point(12, 189);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 47);
-            this.button1.TabIndex = 0;
-            this.button1.Tag = "";
-            this.button1.Text = "1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.Reciprocal.Font = new System.Drawing.Font("굴림", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Reciprocal.Location = new System.Drawing.Point(12, 189);
+            this.Reciprocal.Name = "Reciprocal";
+            this.Reciprocal.Size = new System.Drawing.Size(85, 47);
+            this.Reciprocal.TabIndex = 0;
+            this.Reciprocal.Tag = "";
+            this.Reciprocal.Text = "1/x";
+            this.Reciprocal.UseVisualStyleBackColor = true;
+            this.Reciprocal.Click += new System.EventHandler(this.Reciprocal_Click);
             // 
-            // button2
+            // Square
             // 
-            this.button2.AutoSize = true;
-            this.button2.Font = new System.Drawing.Font("굴림", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button2.Location = new System.Drawing.Point(103, 189);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(85, 47);
-            this.button2.TabIndex = 1;
-            this.button2.Tag = "";
-            this.button2.Text = "1";
-            this.button2.UseVisualStyleBackColor = true;
+            this.Square.AutoSize = true;
+            this.Square.Font = new System.Drawing.Font("굴림", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Square.Location = new System.Drawing.Point(103, 189);
+            this.Square.Name = "Square";
+            this.Square.Size = new System.Drawing.Size(85, 47);
+            this.Square.TabIndex = 1;
+            this.Square.Tag = "";
+            this.Square.Text = "x²";
+            this.Square.UseVisualStyleBackColor = true;
+            this.Square.Click += new System.EventHandler(this.Square_Click);
             // 
-            // button3
+            // Root
             // 
-            this.button3.Font = new System.Drawing.Font("굴림", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button3.Location = new System.Drawing.Point(194, 189);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(85, 47);
-            this.button3.TabIndex = 2;
-            this.button3.Tag = "";
-            this.button3.Text = "1";
-            this.button3.UseVisualStyleBackColor = true;
+            this.Root.Font = new System.Drawing.Font("굴림", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Root.Location = new System.Drawing.Point(194, 189);
+            this.Root.Name = "Root";
+            this.Root.Size = new System.Drawing.Size(85, 47);
+            this.Root.TabIndex = 2;
+            this.Root.Tag = "";
+            this.Root.Text = "√x";
+            this.Root.UseVisualStyleBackColor = true;
+            this.Root.Click += new System.EventHandler(this.Root_Click);
             // 
             // Divided
             // 
-            this.Divided.Font = new System.Drawing.Font("굴림", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Divided.Font = new System.Drawing.Font("굴림", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Divided.Location = new System.Drawing.Point(285, 189);
             this.Divided.Name = "Divided";
             this.Divided.Size = new System.Drawing.Size(85, 47);
@@ -105,18 +108,19 @@ namespace caculator
             // 
             // Multiply
             // 
-            this.Multiply.Font = new System.Drawing.Font("굴림", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Multiply.Font = new System.Drawing.Font("굴림", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Multiply.Location = new System.Drawing.Point(285, 237);
             this.Multiply.Name = "Multiply";
             this.Multiply.Size = new System.Drawing.Size(85, 47);
             this.Multiply.TabIndex = 7;
             this.Multiply.Tag = "2";
-            this.Multiply.Text = "X";
+            this.Multiply.Text = "×";
             this.Multiply.UseVisualStyleBackColor = true;
             this.Multiply.Click += new System.EventHandler(this.Operator_Click);
             // 
             // Number9
             // 
+            this.Number9.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.Number9.Font = new System.Drawing.Font("굴림", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Number9.Location = new System.Drawing.Point(194, 237);
             this.Number9.Name = "Number9";
@@ -124,7 +128,7 @@ namespace caculator
             this.Number9.TabIndex = 6;
             this.Number9.Tag = "";
             this.Number9.Text = "9";
-            this.Number9.UseVisualStyleBackColor = true;
+            this.Number9.UseVisualStyleBackColor = false;
             this.Number9.Click += new System.EventHandler(this.Numpad_Click);
             // 
             // Number8
@@ -153,7 +157,7 @@ namespace caculator
             // 
             // Minus
             // 
-            this.Minus.Font = new System.Drawing.Font("굴림", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Minus.Font = new System.Drawing.Font("굴림", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Minus.Location = new System.Drawing.Point(285, 285);
             this.Minus.Name = "Minus";
             this.Minus.Size = new System.Drawing.Size(85, 47);
@@ -201,7 +205,7 @@ namespace caculator
             // 
             // Plus
             // 
-            this.Plus.Font = new System.Drawing.Font("굴림", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Plus.Font = new System.Drawing.Font("굴림", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Plus.Location = new System.Drawing.Point(285, 333);
             this.Plus.Name = "Plus";
             this.Plus.Size = new System.Drawing.Size(85, 47);
@@ -249,7 +253,7 @@ namespace caculator
             // 
             // Equal
             // 
-            this.Equal.Font = new System.Drawing.Font("굴림", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Equal.Font = new System.Drawing.Font("굴림", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Equal.Location = new System.Drawing.Point(285, 381);
             this.Equal.Name = "Equal";
             this.Equal.Size = new System.Drawing.Size(85, 47);
@@ -285,7 +289,7 @@ namespace caculator
             // 
             // Negate
             // 
-            this.Negate.Font = new System.Drawing.Font("굴림", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Negate.Font = new System.Drawing.Font("굴림", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Negate.Location = new System.Drawing.Point(12, 381);
             this.Negate.Name = "Negate";
             this.Negate.Size = new System.Drawing.Size(85, 47);
@@ -309,7 +313,7 @@ namespace caculator
             // 
             // Clear
             // 
-            this.Clear.Font = new System.Drawing.Font("굴림", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Clear.Font = new System.Drawing.Font("굴림", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Clear.Location = new System.Drawing.Point(194, 141);
             this.Clear.Name = "Clear";
             this.Clear.Size = new System.Drawing.Size(85, 47);
@@ -321,7 +325,7 @@ namespace caculator
             // 
             // ClearEnter
             // 
-            this.ClearEnter.Font = new System.Drawing.Font("굴림", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ClearEnter.Font = new System.Drawing.Font("굴림", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ClearEnter.Location = new System.Drawing.Point(103, 141);
             this.ClearEnter.Name = "ClearEnter";
             this.ClearEnter.Size = new System.Drawing.Size(85, 47);
@@ -333,7 +337,7 @@ namespace caculator
             // 
             // Percentage
             // 
-            this.Percentage.Font = new System.Drawing.Font("굴림", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Percentage.Font = new System.Drawing.Font("굴림", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Percentage.Location = new System.Drawing.Point(12, 141);
             this.Percentage.Name = "Percentage";
             this.Percentage.Size = new System.Drawing.Size(85, 47);
@@ -361,13 +365,16 @@ namespace caculator
             this.calBox.BackColor = System.Drawing.Color.LightGray;
             this.calBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.calBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.calBox.Font = new System.Drawing.Font("굴림", 15F);
-            this.calBox.Location = new System.Drawing.Point(12, 25);
+            this.calBox.Font = new System.Drawing.Font("굴림", 11F);
+            this.calBox.Location = new System.Drawing.Point(12, 12);
+            this.calBox.Multiline = true;
             this.calBox.Name = "calBox";
             this.calBox.ReadOnly = true;
-            this.calBox.Size = new System.Drawing.Size(358, 23);
+            this.calBox.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.calBox.Size = new System.Drawing.Size(358, 28);
             this.calBox.TabIndex = 25;
             this.calBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.calBox.WordWrap = false;
             // 
             // Form1
             // 
@@ -398,9 +405,9 @@ namespace caculator
             this.Controls.Add(this.Number8);
             this.Controls.Add(this.Number7);
             this.Controls.Add(this.Divided);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Root);
+            this.Controls.Add(this.Square);
+            this.Controls.Add(this.Reciprocal);
             this.KeyPreview = true;
             this.Name = "Form1";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -413,11 +420,10 @@ namespace caculator
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button Reciprocal;
+        private System.Windows.Forms.Button Square;
+        private System.Windows.Forms.Button Root;
         private System.Windows.Forms.Button Divided;
-        private System.Windows.Forms.Button Multiply;
         private System.Windows.Forms.Button Number9;
         private System.Windows.Forms.Button Number8;
         private System.Windows.Forms.Button Number7;
@@ -439,6 +445,7 @@ namespace caculator
         private System.Windows.Forms.Button Percentage;
         private System.Windows.Forms.TextBox InputText;
         private System.Windows.Forms.TextBox calBox;
+        private System.Windows.Forms.Button Multiply;
     }
 }
 

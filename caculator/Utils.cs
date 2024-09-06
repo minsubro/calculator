@@ -51,15 +51,18 @@ namespace caculator
         {
             lValue = 0;
             rValue = 0;
-            lValueStr = "";
-            rValueStr = "";
+            lValueStr = "0";
+            rValueStr = "0";
             operatorStr = "";
             op = Operator.END;
 
-            reset = false;
-            input = true;
+            isReset = false;
+            isInput = true;
             isLeft = true;
-            option = false;
+            isOption = false;
+            isError = false;
+            
+            
 
             value.Clear();
             calBox.Text = "";
@@ -80,12 +83,16 @@ namespace caculator
         public void ButtonOnOff(bool state)
         {
 
-            Plus.Enabled = state;
-            Minus.Enabled = state;
-            Divided.Enabled = state;
-            Multiply.Enabled = state;
-            Dot.Enabled = state;
-            Percentage.Enabled = state;
+            Plus.Enabled        = state;
+            Minus.Enabled       = state;
+            Divided.Enabled     = state;
+            Multiply.Enabled    = state;
+            Dot.Enabled         = state;
+            Percentage.Enabled  = state;
+            Reciprocal.Enabled  = state;
+            Square.Enabled      = state;
+            Root.Enabled        = state;
+            Negate.Enabled      = state;
         }
 
         //키보드 이벤트

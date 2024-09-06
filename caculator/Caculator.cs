@@ -36,7 +36,29 @@ namespace caculator
                     break;
             }
             if (double.IsInfinity(ret))
-                throw new Exception("오버플로우");
+                throw new Exception("오버플로");
+            return ret;
+        }
+        
+        public static double Reciprocal(double n)
+        {
+            return 1 / n;
+        }
+
+        public static double Pow(double n)
+        {
+            double ret = Math.Pow(n, 2);
+            if (double.IsInfinity(ret))
+                throw new Exception("오버플로");
+            return ret;
+
+        }
+
+        public static double Square(double n)
+        {
+            double ret = Math.Sqrt(n);
+            if (double.IsNaN(ret))
+                throw new Exception("입력이 잘못되었습니다.");
             return ret;
         }
     }

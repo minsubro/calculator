@@ -15,9 +15,6 @@ namespace caculator
     {
         public Value value;
 
-        public bool reset;
-        public bool input;
-
         public double lValue;
         public double rValue;
         public double result;
@@ -29,9 +26,11 @@ namespace caculator
         public string resultStr;
 
         public bool isLeft;
-        public bool netage;
-        public bool option;
-        
+        public bool isOption;
+        public bool isError;
+        public bool isReset;
+        public bool isInput;
+
 
         public Form1()
         {
@@ -43,20 +42,20 @@ namespace caculator
 
         public void NumberInput(string num)
         {
-            if (reset)
+            if (isReset)
                 Reset();
-            if (!input)
+            if (!isInput)
                 value.Clear();
-            if (option)
+            if (isOption)
             {
                 value.Clear();
-                option = false;
+                isOption = false;
             }
             if ((value.Length > 9 && !value.dot) || (value.Length > 10 && value.dot))
                 return;
             value.String += num;
             value.RemoveLeadingZeros();
-            input = true;
+            isInput = true;
             if (isLeft)
             {
                 lValueStr = value.String;
@@ -67,7 +66,7 @@ namespace caculator
                 rValueStr = value.String;
                 rValue = double.Parse(rValueStr);
             }
-            if (option)
+            if (isOption)
                 UpdateCalculateBox();
             UpdateInputText(value.String);
         }
@@ -76,13 +75,13 @@ namespace caculator
         {
             try
             {
-                if (isLeft && input)
+                if (isLeft && isInput)
                 {
                     rValue = lValue;
                     rValueStr = rValue.ToString();
                     isLeft = false;
                 }
-                else if (input)
+                else if (isInput)
                 {
                     result = Calculator.Calculate(rValue, lValue, op);
                     resultStr = result.ToString();
@@ -95,9 +94,9 @@ namespace caculator
                 
                 op = n;
                 operatorStr = GetSimbol(n);
-                input = false;
-                reset = false;
-                option = false;
+                isInput = false;
+                isReset = false;
+                isOption = false;
                 UpdateCalculateBox();
             }
             catch (Exception e)
@@ -128,7 +127,7 @@ namespace caculator
 
         private void ClearEnter_Click(object sender, EventArgs e)
         {
-            if (reset)
+            if (isReset)
                 Reset();
             else
             {
@@ -143,9 +142,9 @@ namespace caculator
                     rValueStr = "";
                     rValue = 0;
                 }
-                if (option)
+                if (isOption)
                 {
-                    option = false;
+                    isOption = false;
                     UpdateCalculateBox();
                 }
             }
@@ -159,9 +158,9 @@ namespace caculator
 
         private void Delete_Click(object sender, EventArgs e)
         {
-            if (reset)
+            if (isReset)
                 Reset();
-            else if (input)
+            else if (isInput)
             {
                 value.Del();
                 if (isLeft)
@@ -182,8 +181,8 @@ namespace caculator
         {
             try
             {
-                input = false;
-                reset = true;
+                isInput = false;
+                isReset = true;
                 if (op == Operator.END)
                 {
                     operatorStr = "=";
@@ -207,7 +206,7 @@ namespace caculator
 
         private void Negate_Click(object sender, EventArgs e)
         {
-            if (reset)
+            if (isReset)
             {
                 string tmp = resultStr;
                 Reset();
@@ -219,10 +218,88 @@ namespace caculator
                 lValueStr = string.Format("negate({0})", lValueStr);
             else
                 rValueStr = string.Format("negate({0})", rValueStr);
-            option = true;
+            isOption = true;
             value.Negate();
             UpdateCalculateBox();
             UpdateInputText(value.String);
+        }
+
+        private void Reciprocal_Click(object sender, EventArgs e)
+        {
+            if (isReset)
+            {
+                string tmp = resultStr;
+                Reset();
+                lValueStr = value.String = tmp;
+                lValue = Double.Parse(lValueStr);
+            }
+            if (isLeft)
+                lValueStr = string.Format("1/({0})", lValueStr);
+            else
+                rValueStr = string.Format("1/({0})", rValueStr);
+
+            if (value.Double == 0)
+                Error("0으로 나눌 수 없습니다.");
+            else
+            {
+                isOption = true;
+                value.String = Calculator.Reciprocal(double.Parse(value.String)).ToString();
+                UpdateCalculateBox();
+                UpdateInputText(value.String);
+            }
+            
+        }
+
+        private void Square_Click(object sender, EventArgs e)
+        {
+            if (isReset)
+            {
+                string tmp = resultStr;
+                Reset();
+                lValueStr = value.String = tmp;
+                lValue = Double.Parse(lValueStr);
+            }
+            if (isLeft)
+                lValueStr = string.Format("sqr({0})", lValueStr);
+            else
+                rValueStr = string.Format("sqr({0})", rValueStr);
+            try
+            {
+                isOption = true;
+                value.String = Calculator.Pow(double.Parse(value.String)).ToString();
+                UpdateCalculateBox();
+                UpdateInputText(value.String);
+            }
+            catch (Exception a)
+            {
+                Error(a.Message);
+            }
+        }
+
+        private void Root_Click(object sender, EventArgs e)
+        {
+            if (isReset)
+            {
+                string tmp = resultStr;
+                Reset();
+                lValueStr = value.String = tmp;
+                lValue = Double.Parse(lValueStr);
+            }
+            if (isLeft)
+                lValueStr = string.Format("√({0})", lValueStr);
+            else
+                rValueStr = string.Format("√({0})", rValueStr);
+            try
+            {
+                isOption = true;
+                value.String = Calculator.Square(double.Parse(value.String)).ToString();
+                UpdateCalculateBox();
+                UpdateInputText(value.String);
+            }
+            catch (Exception a)
+            {
+                Error(a.Message);
+            }
         }
     }
 }
