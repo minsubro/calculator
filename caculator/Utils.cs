@@ -13,27 +13,21 @@ namespace caculator
         public void Error(string message)
         {
             UpdateInputText(message);
-            reset = true;
+            isReset = true;
             ButtonOnOff(ButtonState.OFF);
         }
 
         public void UpdateCalculateBox()
         {
-            if (reset && op == Operator.END)
+            if (isReset && op == Operator.END)
                 calBox.Text = String.Format("{0} {1}", Double.Parse(value.String).ToString(), '=');
             else if (op == Operator.END)
                 calBox.Text = string.Format("{0}", lValueStr);
-            else if (option && !isLeft)
+            else if (isOption && !isLeft)
                 calBox.Text = string.Format("{0} {1} {2}", lValueStr, operatorStr, rValueStr);
             else if (!isLeft)
                 calBox.Text = string.Format("{0} {1}", lValueStr, operatorStr);
 
-            //if (operatorStr == "")
-            //    calBox.Text = string.Format("{0}", lValueStr);
-            //else if (isLeft)
-            //    calBox.Text = string.Format("{0} {1}", lValueStr, operatorStr);
-            //else
-            //    calBox.Text = string.Format("{0} {1} {2}", lValueStr, operatorStr, rValueStr);
         }
         public void UpdateInputText(string text)
         {
