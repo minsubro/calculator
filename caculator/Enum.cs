@@ -8,10 +8,16 @@ namespace caculator
 {
   
 
-    class ButtonState
+    public class OnOff
     {
         public const bool ON = true;
         public const bool OFF = false;
+    }
+
+    public enum ShowList
+    {
+        RECORD,
+        MEMORY
     }
         
     public enum Operator

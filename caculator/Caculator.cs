@@ -42,6 +42,8 @@ namespace caculator
         
         public static double Reciprocal(double n)
         {
+            if (n == 0)
+                throw new Exception("0으로 나눌 수 없습니다.");
             return 1 / n;
         }
 

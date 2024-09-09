@@ -55,6 +55,21 @@ namespace caculator
             this.Percentage = new System.Windows.Forms.Button();
             this.InputText = new System.Windows.Forms.TextBox();
             this.calBox = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.ItemDelete = new System.Windows.Forms.Button();
+            this.SelectItemMinus = new System.Windows.Forms.Button();
+            this.SelectItemPlus = new System.Windows.Forms.Button();
+            this.ListClear = new System.Windows.Forms.Button();
+            this.MemoryList = new System.Windows.Forms.ListBox();
+            this.RecordList = new System.Windows.Forms.ListBox();
+            this.Memory = new System.Windows.Forms.Button();
+            this.Record = new System.Windows.Forms.Button();
+            this.MemoryClear = new System.Windows.Forms.Button();
+            this.MemoryRead = new System.Windows.Forms.Button();
+            this.MemoryPlus = new System.Windows.Forms.Button();
+            this.MemoryMinus = new System.Windows.Forms.Button();
+            this.MemorySave = new System.Windows.Forms.Button();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Reciprocal
@@ -120,7 +135,7 @@ namespace caculator
             // 
             // Number9
             // 
-            this.Number9.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.Number9.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Number9.Font = new System.Drawing.Font("굴림", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Number9.Location = new System.Drawing.Point(194, 237);
             this.Number9.Name = "Number9";
@@ -376,12 +391,182 @@ namespace caculator
             this.calBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.calBox.WordWrap = false;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.ItemDelete);
+            this.panel1.Controls.Add(this.SelectItemMinus);
+            this.panel1.Controls.Add(this.SelectItemPlus);
+            this.panel1.Controls.Add(this.ListClear);
+            this.panel1.Controls.Add(this.MemoryList);
+            this.panel1.Controls.Add(this.RecordList);
+            this.panel1.Controls.Add(this.Memory);
+            this.panel1.Controls.Add(this.Record);
+            this.panel1.Location = new System.Drawing.Point(376, 12);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(230, 416);
+            this.panel1.TabIndex = 26;
+            // 
+            // ItemDelete
+            // 
+            this.ItemDelete.FlatAppearance.BorderSize = 0;
+            this.ItemDelete.Location = new System.Drawing.Point(176, 393);
+            this.ItemDelete.Name = "ItemDelete";
+            this.ItemDelete.Size = new System.Drawing.Size(54, 23);
+            this.ItemDelete.TabIndex = 7;
+            this.ItemDelete.Text = "삭제";
+            this.ItemDelete.UseVisualStyleBackColor = true;
+            this.ItemDelete.Click += new System.EventHandler(this.ItemDelete_Click);
+            // 
+            // SelectItemMinus
+            // 
+            this.SelectItemMinus.FlatAppearance.BorderSize = 0;
+            this.SelectItemMinus.Location = new System.Drawing.Point(119, 393);
+            this.SelectItemMinus.Name = "SelectItemMinus";
+            this.SelectItemMinus.Size = new System.Drawing.Size(54, 23);
+            this.SelectItemMinus.TabIndex = 6;
+            this.SelectItemMinus.Text = "M-";
+            this.SelectItemMinus.UseVisualStyleBackColor = true;
+            // 
+            // SelectItemPlus
+            // 
+            this.SelectItemPlus.FlatAppearance.BorderSize = 0;
+            this.SelectItemPlus.Location = new System.Drawing.Point(62, 393);
+            this.SelectItemPlus.Name = "SelectItemPlus";
+            this.SelectItemPlus.Size = new System.Drawing.Size(54, 23);
+            this.SelectItemPlus.TabIndex = 5;
+            this.SelectItemPlus.Text = "M+";
+            this.SelectItemPlus.UseVisualStyleBackColor = true;
+            // 
+            // ListClear
+            // 
+            this.ListClear.FlatAppearance.BorderSize = 0;
+            this.ListClear.Location = new System.Drawing.Point(162, 16);
+            this.ListClear.Name = "ListClear";
+            this.ListClear.Size = new System.Drawing.Size(65, 23);
+            this.ListClear.TabIndex = 4;
+            this.ListClear.Text = "전체 삭제";
+            this.ListClear.UseVisualStyleBackColor = true;
+            this.ListClear.Click += new System.EventHandler(this.ListClear_Click);
+            // 
+            // MemoryList
+            // 
+            this.MemoryList.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.MemoryList.FormattingEnabled = true;
+            this.MemoryList.ItemHeight = 19;
+            this.MemoryList.Items.AddRange(new object[] {
+            "text1",
+            "text2",
+            "1 * 2 = 3"});
+            this.MemoryList.Location = new System.Drawing.Point(3, 44);
+            this.MemoryList.Name = "MemoryList";
+            this.MemoryList.Size = new System.Drawing.Size(224, 346);
+            this.MemoryList.TabIndex = 3;
+            this.MemoryList.SelectedIndexChanged += new System.EventHandler(this.MemoryList_SelectedIndexChanged);
+            // 
+            // RecordList
+            // 
+            this.RecordList.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.RecordList.FormattingEnabled = true;
+            this.RecordList.ItemHeight = 19;
+            this.RecordList.Items.AddRange(new object[] {
+            "text1",
+            "text2",
+            "1 * 2 = 3"});
+            this.RecordList.Location = new System.Drawing.Point(3, 44);
+            this.RecordList.Name = "RecordList";
+            this.RecordList.Size = new System.Drawing.Size(224, 346);
+            this.RecordList.TabIndex = 2;
+            this.RecordList.SelectedIndexChanged += new System.EventHandler(this.MemoryList_SelectedIndexChanged);
+            // 
+            // Memory
+            // 
+            this.Memory.FlatAppearance.BorderSize = 0;
+            this.Memory.Location = new System.Drawing.Point(68, 16);
+            this.Memory.Name = "Memory";
+            this.Memory.Size = new System.Drawing.Size(65, 23);
+            this.Memory.TabIndex = 1;
+            this.Memory.Text = "메모리";
+            this.Memory.UseVisualStyleBackColor = true;
+            this.Memory.Click += new System.EventHandler(this.Memory_Click);
+            // 
+            // Record
+            // 
+            this.Record.FlatAppearance.BorderSize = 0;
+            this.Record.Location = new System.Drawing.Point(3, 16);
+            this.Record.Name = "Record";
+            this.Record.Size = new System.Drawing.Size(65, 23);
+            this.Record.TabIndex = 0;
+            this.Record.Text = "기록";
+            this.Record.UseVisualStyleBackColor = true;
+            this.Record.Click += new System.EventHandler(this.Record_Click);
+            // 
+            // MemoryClear
+            // 
+            this.MemoryClear.Location = new System.Drawing.Point(12, 107);
+            this.MemoryClear.Margin = new System.Windows.Forms.Padding(0);
+            this.MemoryClear.Name = "MemoryClear";
+            this.MemoryClear.Size = new System.Drawing.Size(64, 32);
+            this.MemoryClear.TabIndex = 3;
+            this.MemoryClear.Text = "MC";
+            this.MemoryClear.UseVisualStyleBackColor = true;
+            this.MemoryClear.Click += new System.EventHandler(this.MemoryClear_Click);
+            // 
+            // MemoryRead
+            // 
+            this.MemoryRead.Location = new System.Drawing.Point(85, 107);
+            this.MemoryRead.Margin = new System.Windows.Forms.Padding(0);
+            this.MemoryRead.Name = "MemoryRead";
+            this.MemoryRead.Size = new System.Drawing.Size(64, 32);
+            this.MemoryRead.TabIndex = 29;
+            this.MemoryRead.Text = "MR";
+            this.MemoryRead.UseVisualStyleBackColor = true;
+            this.MemoryRead.Click += new System.EventHandler(this.MemoryRead_Click);
+            // 
+            // MemoryPlus
+            // 
+            this.MemoryPlus.Location = new System.Drawing.Point(161, 107);
+            this.MemoryPlus.Margin = new System.Windows.Forms.Padding(0);
+            this.MemoryPlus.Name = "MemoryPlus";
+            this.MemoryPlus.Size = new System.Drawing.Size(64, 32);
+            this.MemoryPlus.TabIndex = 30;
+            this.MemoryPlus.Text = "M+";
+            this.MemoryPlus.UseVisualStyleBackColor = true;
+            this.MemoryPlus.Click += new System.EventHandler(this.MemoryPlus_Click);
+            // 
+            // MemoryMinus
+            // 
+            this.MemoryMinus.Location = new System.Drawing.Point(234, 107);
+            this.MemoryMinus.Margin = new System.Windows.Forms.Padding(0);
+            this.MemoryMinus.Name = "MemoryMinus";
+            this.MemoryMinus.Size = new System.Drawing.Size(64, 32);
+            this.MemoryMinus.TabIndex = 31;
+            this.MemoryMinus.Text = "M-";
+            this.MemoryMinus.UseVisualStyleBackColor = true;
+            this.MemoryMinus.Click += new System.EventHandler(this.MemoryMinus_Click);
+            // 
+            // MemorySave
+            // 
+            this.MemorySave.Location = new System.Drawing.Point(306, 107);
+            this.MemorySave.Margin = new System.Windows.Forms.Padding(0);
+            this.MemorySave.Name = "MemorySave";
+            this.MemorySave.Size = new System.Drawing.Size(64, 32);
+            this.MemorySave.TabIndex = 32;
+            this.MemorySave.Text = "MS";
+            this.MemorySave.UseVisualStyleBackColor = true;
+            this.MemorySave.Click += new System.EventHandler(this.MemorySave_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(385, 447);
+            this.ClientSize = new System.Drawing.Size(618, 447);
+            this.Controls.Add(this.MemorySave);
+            this.Controls.Add(this.MemoryMinus);
+            this.Controls.Add(this.MemoryPlus);
+            this.Controls.Add(this.MemoryRead);
+            this.Controls.Add(this.MemoryClear);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.calBox);
             this.Controls.Add(this.InputText);
             this.Controls.Add(this.Delete);
@@ -413,6 +598,7 @@ namespace caculator
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "계산기";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -446,6 +632,20 @@ namespace caculator
         private System.Windows.Forms.TextBox InputText;
         private System.Windows.Forms.TextBox calBox;
         private System.Windows.Forms.Button Multiply;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button Memory;
+        private System.Windows.Forms.Button Record;
+        private System.Windows.Forms.ListBox RecordList;
+        private System.Windows.Forms.Button MemoryClear;
+        private System.Windows.Forms.Button MemoryRead;
+        private System.Windows.Forms.Button MemoryPlus;
+        private System.Windows.Forms.Button MemoryMinus;
+        private System.Windows.Forms.Button MemorySave;
+        private System.Windows.Forms.ListBox MemoryList;
+        private System.Windows.Forms.Button ListClear;
+        private System.Windows.Forms.Button ItemDelete;
+        private System.Windows.Forms.Button SelectItemMinus;
+        private System.Windows.Forms.Button SelectItemPlus;
     }
 }
 

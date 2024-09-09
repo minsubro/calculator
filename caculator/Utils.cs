@@ -12,9 +12,10 @@ namespace caculator
     {
         public void Error(string message)
         {
-            UpdateInputText(message);
+            ButtonOnOff(OnOff.OFF);
             isReset = true;
-            ButtonOnOff(ButtonState.OFF);
+            isError = true;
+            UpdateInputText(message);
         }
 
         public void UpdateCalculateBox()
@@ -27,11 +28,14 @@ namespace caculator
                 calBox.Text = string.Format("{0} {1} {2}", lValueStr, operatorStr, rValueStr);
             else if (!isLeft)
                 calBox.Text = string.Format("{0} {1}", lValueStr, operatorStr);
-
         }
+
         public void UpdateInputText(string text)
         {
-            InputText.Text = text;
+            if (isError)
+                InputText.Text = text;
+            else
+                InputText.Text = FormatWithCommas(text);
             CustomFontSize();
         }
 
@@ -49,6 +53,7 @@ namespace caculator
             rValueStr = "0";
             operatorStr = "";
             op = Operator.END;
+            selectIndex = -1;
 
             isReset = false;
             isInput = true;
@@ -56,13 +61,11 @@ namespace caculator
             isOption = false;
             isError = false;
             
-            
-
             value.Clear();
             calBox.Text = "";
             InputText.Text = "";
             UpdateInputText("0");
-            ButtonOnOff(ButtonState.ON);
+            ButtonOnOff(OnOff.ON);
         }
 
         public void CustomFontSize()
@@ -87,6 +90,21 @@ namespace caculator
             Square.Enabled      = state;
             Root.Enabled        = state;
             Negate.Enabled      = state;
+            MemoryPlus.Enabled  = state;
+            MemoryMinus.Enabled = state;
+            MemorySave.Enabled  = state;
+
+            if (state == OnOff.ON && MemoryList.Items.Count > 0)
+            {
+                MemoryClear.Enabled = state;
+                MemoryRead.Enabled = state;
+            }
+            else
+            {
+                MemoryClear.Enabled = OnOff.OFF;
+                MemoryRead.Enabled = OnOff.OFF;
+            }
+                
         }
 
         //키보드 이벤트
@@ -124,9 +142,22 @@ namespace caculator
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-
-
+        public string FormatWithCommas(string s)
+        {
+            int pos = s.IndexOf('.');
+            string integerPart = pos == -1 ? s : s.Substring(0, pos);
+            string decimalPart = pos == -1 ? "" : s.Substring(pos);
+            string tmp = "";
+            integerPart = new string(integerPart.Reverse().ToArray());
+            for (int i = 0; i < integerPart.Length; i++)
+            {
+                if (i > 0 && i % 3 == 0)
+                    tmp += ',';
+                tmp += integerPart[i];
+            }
+            tmp = new string(tmp.Reverse().ToArray());
+            return tmp + decimalPart;
+        }
     }
-
 }
 
