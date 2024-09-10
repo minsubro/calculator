@@ -73,7 +73,7 @@ namespace caculator
                     rValueStr = "";
                 UpdateCalculateBox();
             }
-            if ((value.Length > 9 && !value.dot) || (value.Length > 10 && value.dot))
+            if ((value.Length > 9 && !value.Dot) || (value.Length > 10 && value.Dot))
                 return;
             value.String += num;
             value.RemoveLeadingZeros();
@@ -93,9 +93,12 @@ namespace caculator
 
         public void OperatorInput(Operator n)
         {
+
+            if (isError)
+                return;
             try
             {
-                if (isLeft && isInput)
+                if (isLeft)
                 {
                     rValue = lValue;
                     rValueStr = rValue.ToString();
@@ -133,8 +136,6 @@ namespace caculator
 
         private void Operator_Click(object sender, EventArgs s)
         {
-            if (isError)
-                return;
             OperatorInput((Operator)int.Parse(((Button)sender).Tag.ToString()));
         }
 
@@ -144,10 +145,10 @@ namespace caculator
                 Reset();
             if (isError)
                 return;
-            if (!value.dot)
+            if (!value.Dot)
             {
                 value.String += '.';
-                value.dot = true;
+                value.Dot = true;
                 UpdateInputText(value.String);
             }
         }
@@ -213,12 +214,10 @@ namespace caculator
             }
             UpdateInputText(value.String);
         }
-
         private void Clear_Click(object sender, EventArgs e)
         {
             Reset();
         }
-
         private void Delete_Click(object sender, EventArgs e)
         {
             if (isReset)
@@ -413,8 +412,8 @@ namespace caculator
             else
             {
                 value.String = MemoryList.Items[0].ToString();
-                lValueStr = value.String;
-                lValue = Double.Parse(lValueStr);
+                rValueStr = value.String;
+                rValue = Double.Parse(rValueStr);
             }
             isInput = false;
             isOption = false;
@@ -454,16 +453,13 @@ namespace caculator
             }
         }
 
-        #endregion
-
-
         private void ListClear_Click(object sender, EventArgs e)
         {
             if (showList == ShowList.RECORD)
                 RecordList.Items.Clear();
             else
                 MemoryClear_Click(null, null);
-                
+
         }
 
         private void MemoryList_SelectedIndexChanged(object sender, EventArgs e)
@@ -491,5 +487,101 @@ namespace caculator
                 RecordList.Items.RemoveAt(selectIndex);
             selectIndex = -1;
         }
+
+        private void MemoryList_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int index = MemoryList.IndexFromPoint(e.Location);
+
+            if (index == -1)
+                return;
+            if (isError || isReset)
+                Reset();
+            value.String = MemoryList.Items[index].ToString();
+            for (int i = 0; i < value.String.Length; i++)
+            {
+                if (value.String[i] == '.')
+                    value.Dot = true;
+            }
+            if (isLeft)
+            {
+                lValueStr = value.String;
+                lValue = value.Double;
+            }
+            else
+            {
+                rValueStr = value.String;
+                rValue = value.Double;
+            }
+            isInput = false;
+            UpdateInputText(value.String);
+        }
+
+        private void SelectItemPlus_Click(object sender, EventArgs e)
+        {
+            if (selectIndex == -1)
+                return;
+            try
+            {
+                double tmp = Double.Parse(MemoryList.Items[selectIndex].ToString());
+                tmp = Calculator.Calculate(tmp, value.Double, Operator.PLUS);
+                MemoryList.Items[selectIndex] = tmp.ToString();
+            }
+            catch (Exception ex)
+            {
+                Error(ex.Message);
+            }
+
+        }
+
+        private void SelectItemMinus_Click(object sender, EventArgs e)
+        {
+            if (selectIndex == -1)
+                return;
+            try
+            {
+                double tmp = Double.Parse(MemoryList.Items[selectIndex].ToString());
+                tmp = Calculator.Calculate(tmp, value.Double, Operator.MINUS);
+                MemoryList.Items[selectIndex] = tmp.ToString();
+            }
+            catch (Exception ex)
+            {
+                Error(ex.Message);
+            }
+        }
+
+        private void RecordList_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int index = RecordList.IndexFromPoint(e.Location);
+
+            if (index == -1)
+                return;
+            string[] split = RecordList.Items[index].ToString().Split(' ');
+            if (split.Length == 5)
+            {
+                value.String = split[4];
+                lValueStr = split[0];
+                lValue = Double.Parse(lValueStr);
+                op = getOperator(split[1]);
+                operatorStr = split[1];
+                rValueStr = split[2];
+                rValue = Double.Parse(rValueStr);
+                isLeft = false;
+                calBox.Text = string.Format("{0} {1} {2} =", split[0], split[1], split[2]);
+            }
+            if (split.Length == 2)
+            {
+                value.String = lValueStr = split[0];
+                lValue = Double.Parse(lValueStr);
+                isLeft = true;
+                op = Operator.END;
+                operatorStr = "";
+                calBox.Text = string.Format("{0} =", split[0]);
+            }
+            isInput = false;
+            isReset = false;
+            UpdateInputText(value.String);
+        }
+    #endregion
+
     }
 }

@@ -426,6 +426,7 @@ namespace caculator
             this.SelectItemMinus.TabIndex = 6;
             this.SelectItemMinus.Text = "M-";
             this.SelectItemMinus.UseVisualStyleBackColor = true;
+            this.SelectItemMinus.Click += new System.EventHandler(this.SelectItemMinus_Click);
             // 
             // SelectItemPlus
             // 
@@ -436,6 +437,7 @@ namespace caculator
             this.SelectItemPlus.TabIndex = 5;
             this.SelectItemPlus.Text = "M+";
             this.SelectItemPlus.UseVisualStyleBackColor = true;
+            this.SelectItemPlus.Click += new System.EventHandler(this.SelectItemPlus_Click);
             // 
             // ListClear
             // 
@@ -462,6 +464,7 @@ namespace caculator
             this.MemoryList.Size = new System.Drawing.Size(224, 346);
             this.MemoryList.TabIndex = 3;
             this.MemoryList.SelectedIndexChanged += new System.EventHandler(this.MemoryList_SelectedIndexChanged);
+            this.MemoryList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.MemoryList_MouseDoubleClick);
             // 
             // RecordList
             // 
@@ -477,6 +480,7 @@ namespace caculator
             this.RecordList.Size = new System.Drawing.Size(224, 346);
             this.RecordList.TabIndex = 2;
             this.RecordList.SelectedIndexChanged += new System.EventHandler(this.MemoryList_SelectedIndexChanged);
+            this.RecordList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.RecordList_MouseDoubleClick);
             // 
             // Memory
             // 
@@ -559,8 +563,9 @@ namespace caculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(618, 447);
+            this.ClientSize = new System.Drawing.Size(618, 436);
             this.Controls.Add(this.MemorySave);
             this.Controls.Add(this.MemoryMinus);
             this.Controls.Add(this.MemoryPlus);

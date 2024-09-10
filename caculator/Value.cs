@@ -14,7 +14,7 @@ namespace caculator
         public string String { get => _buffer; set { _buffer = value; } }
         public double Double { get => GetDouble(); }
         
-        public bool dot { get => _dot; set { _dot = value; } }
+        public bool Dot { get => _dot; set { _dot = value; } }
         public int Length { get => _buffer.Length; }
 
         public Value() { 
@@ -22,7 +22,7 @@ namespace caculator
         }
         public void Clear() { 
             _buffer = "0";
-            dot = false;
+            _dot = false;
         }
 
         public double GetDouble()

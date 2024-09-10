@@ -37,6 +37,8 @@ namespace caculator
             }
             if (double.IsInfinity(ret))
                 throw new Exception("오버플로");
+            if (double.IsNaN(ret))
+                throw new Exception("오버플로");
             return ret;
         }
         

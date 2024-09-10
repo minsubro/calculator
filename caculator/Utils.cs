@@ -79,7 +79,6 @@ namespace caculator
 
         public void ButtonOnOff(bool state)
         {
-
             Plus.Enabled        = state;
             Minus.Enabled       = state;
             Divided.Enabled     = state;
@@ -93,6 +92,8 @@ namespace caculator
             MemoryPlus.Enabled  = state;
             MemoryMinus.Enabled = state;
             MemorySave.Enabled  = state;
+            SelectItemMinus.Enabled = state;
+            SelectItemPlus.Enabled = state;
 
             if (state == OnOff.ON && MemoryList.Items.Count > 0)
             {
@@ -157,6 +158,18 @@ namespace caculator
             }
             tmp = new string(tmp.Reverse().ToArray());
             return tmp + decimalPart;
+        }
+
+        public Operator getOperator(string simbol)
+        {
+            if (simbol == "+")
+                return Operator.PLUS;
+            else if (simbol == "-")
+                return Operator.MINUS;
+            else if (simbol == "*")
+                return Operator.MUL;
+            else
+                return Operator.DIV;
         }
     }
 }
